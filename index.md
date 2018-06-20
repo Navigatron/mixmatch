@@ -1,21 +1,20 @@
-# Mixmatch's Java Reference
+# Mixmatch
 
-Quick Reference for some Common Java Things. Copy/Paste whatever you need.
+What is good with it?
 
-### Structure of a File
+## Java Samples
 
-```java
-public class filename{
-    public static void main(String[] args){
-        // Code
-    }
-}
-```
+#### Mixmatch's GUI thing
 
-### Printing Data
+Hit go, and a window will appear. Press space to make the square go up. Try some of the following:
 
-Anything can be printed. use `=` to print many things at the same time.
+- Change the Colors.
+- Decrease Gravity so it's slower.
+- Draw another piece of flame, make it look like fire
+- Left and right movement? (challenge)
 
-```Java
-System.out.println(/*Thing To Print*/);
-```
+[Get the code Here.](./lander.java)
+
+#### Zach's Rotating Sphere.
+
+I'll have this up here soon. To run this, you'll need to create a new *Processing Project*.
