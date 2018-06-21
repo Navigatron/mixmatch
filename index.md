@@ -15,6 +15,15 @@ Hit go, and a window will appear. Press space to make the square go up. Try some
 
 [Get the code Here.](./lander.java)
 
+**Update**: Version 2 is here.
+
+This version is better, it's laid out in a much more intuitive way.
+
+- Should be easier to Understand
+- Should be easier to turn into something cool.
+
+[Get the code Here.](./mixmatchmaze.java)
+
 #### Zach's Rotating Sphere.
 
 I'll have this up here soon. To run this, you'll need to create a new *Processing Project*.
