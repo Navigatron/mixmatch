@@ -1,5 +1,4 @@
 # Mixmatch's Java Class
----
 
 One week of intense java action. Below you'll find sample code I've written as well as the **Hall of Fame**, which includes code from current and past students.
 
@@ -28,7 +27,7 @@ This *processing project* creates a window with a blue sphere. Through keyboard 
 
 ##### A Bowl of Rice
 
-This *processing project* Will comfortable simulate one thousand or more rice on the screen. With the mouse, the user can push or pull the rice around.
+This *processing project* Will comfortably simulate one thousand or more rice on the screen. With the mouse, the user can push or pull the rice around.
 
 - The code for rice-on-rice collisions is present, though not activated
 - Try changing the force variable to change the entire behaviour of the physics!
