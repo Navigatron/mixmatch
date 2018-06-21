@@ -1,29 +1,36 @@
-# Mixmatch
+# Mixmatch's Java Class
+---
 
-What is good with it?
+One week of intense java action. Below you'll find sample code I've written as well as the **Hall of Fame**, which includes code from current and past students.
 
-## Java Samples
+### Mixmatch's Sample Code
 
-#### Mixmatch's GUI thing
+The below project will:  
+- Create a Window.
+- Show all the rectangles defined in the *buildWorld* method.
+- Use the Keyboard to control the Green Square.
+- Detect collisions between rectangles.
 
-Hit go, and a window will appear. Press space to make the square go up. Try some of the following:
+Challenges:
+- Change the color of the player square.
+- Change the default color of all rectangles.
+- Make the camera follow the player. Hint:  `camera.position = player.position;`, somewhere in the *physics* method.
 
-- Change the Colors.
-- Decrease Gravity so it's slower.
-- Draw another piece of flame, make it look like fire
-- Left and right movement? (challenge)
+[Get the code Here.](./code/mixmatchmaze.java)
 
-[Get the code Here.](./lander.java)
+### Hall of Fame
 
-**Update**: Version 2 is here.
+##### Spinning Blue Sphere
 
-This version is better, it's laid out in a much more intuitive way.
+This *processing project* creates a window with a blue sphere. Through keyboard controls, the user can rotate the sphere. If you need help setting up a *processing project*, just ask!
 
-- Should be easier to Understand
-- Should be easier to turn into something cool.
+[Get the code Here.](./code/ProccesingProject.java)
 
-[Get the code Here.](./mixmatchmaze.java)
+##### A Bowl of Rice
 
-#### Zach's Rotating Sphere.
+This *processing project* Will comfortable simulate one thousand or more rice on the screen. With the mouse, the user can push or pull the rice around.
 
-I'll have this up here soon. To run this, you'll need to create a new *Processing Project*.
+- The code for rice-on-rice collisions is present, though not activated
+- Try changing the force variable to change the entire behaviour of the physics!
+
+[Get the code Here.](./code/ABowlofRice.java)
