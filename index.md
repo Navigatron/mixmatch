@@ -25,13 +25,13 @@ Challenges:
 ### <a name="hof"></a>Hall of Fame
 ---
 
-##### Spinning Blue Sphere
+#### Spinning Blue Sphere
 
 This *processing project* creates a window with a blue sphere. Through keyboard controls, the user can rotate the sphere. If you need help setting up a *processing project*, just ask!
 
 [Get the code Here.](./code/ProccesingProject.java)
 
-##### A Bowl of Rice
+#### A Bowl of Rice
 
 This *processing project* Will comfortably simulate one thousand or more rice on the screen. With the mouse, the user can push or pull the rice around.
 
@@ -43,7 +43,7 @@ This *processing project* Will comfortably simulate one thousand or more rice on
 ### <a name="reference"></a>Code Reference
 ---
 
-##### The Basic Blueprint
+#### The Basic Blueprint
 
 A class is a *blueprint*, it defines what makes a thing. **main** is the point where your program starts.
 
@@ -57,7 +57,7 @@ public class filename{
 }
 ```
 
-##### Printing to the Console
+#### Printing to the Console
 
 `print()` will not move to a new line after printing, while `println()` will.
 
@@ -85,7 +85,7 @@ System.out.println("Number is "+number+", and decimal is "+decimal+".");
 
 Output: `Number is 5, and decimal is 3.14.`
 
-##### Using Variables
+#### Using Variables
 
 The basic format for making a variable is `Type name = thing`.
 
@@ -98,7 +98,7 @@ String name = "Jetpack Jerome";
 Scanner readyread = new Scanner(System.in);
 ```
 
-##### Using Scanner to get user feedback: Menu Sample Code.
+#### Using Scanner to get user feedback: Menu Sample Code.
 
 To use the Scanner object, we have to `import` it. Then, we can create a `Scanner` object and use it to get input.
 
@@ -123,7 +123,7 @@ The two scanner methods we'll use most often are `nextInt()` to get a number and
 
 *Note:* If you use `nextInt()` and then `nextLine()`, the newline from the number may trigger the `nextLine()` early. If you encounter this, just ask, and I'll help you fix it.
 
-##### If Statements
+#### If Statements
 
 `if` statements allow us to make decisions based on user input. The below example builds off of the above Menu example.
 
