@@ -78,7 +78,7 @@ Hello!
 
 Variables can also be printed.
 
-```Java
+```java
 int number = 5;
 double decimal = 3.14;
 System.out.println("Number is "+number+", and decimal is "+decimal+".");
@@ -105,7 +105,7 @@ To use the Scanner object, we have to `import` it. Then, we can create a `Scanne
 
 The following example uses `println` to show a menu, and then gets the user's choice.
 
-```Java
+```java
 import java.util.Scanner;
 public class MenuExample{
     public static void main(String[] args) {
@@ -128,14 +128,14 @@ The two scanner methods we'll use most often are `nextInt()` to get a number and
 
 `if` statements allow us to make decisions based on user input. The below example builds off of the above Menu example.
 
-```Java
+```java
 if( response == 4 ){
     System.out.println("Secret Option 4! Bonus mode unlocked!");
 }
 ```
 
 If statements can be chained, and used in conjunction with `else`.
-```Java
+```java
 if(response==1){
     // code for 1
 }else if(response==2){
