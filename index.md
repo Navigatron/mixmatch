@@ -9,7 +9,7 @@
 `03:30 PM` - Return to civilization (Class)  
 `04:30 PM` - Begin system shutdown (Wrap-up, Shoutouts)   
 `05:00 PM` - Day Campers, **BEGONE!**  
-`06:00 PM` - Tonight! We Dine! *In Nelson Hall!* (Dinner)
+`05:30 PM` - Tonight! We Dine! *In Nelson Hall!* (Dinner)
 
 #### Select your class below:  
 

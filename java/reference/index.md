@@ -1,14 +1,14 @@
 # Java Code Reference
 
-### [[Syntax and Style]()]
+### [[Syntax and Style](./1_syntax_style.md)]
 Mistakes to learn from. The Basic Principles of Java at the most literal level.
-### [[The Skeleton Program]()]
+### [[The Skeleton Program](./2_classes_main_skeleton.md)]
 The simplest program you can make, and how it works.
-### [[Println]()]
+### [[Println](./3_out.md)]
 How to get information out of your program. Hello World!
-### [[Variables]()]
+### [[Variables](./4_variables.md)]
 Declaration vs Initialization, how to make them and how to use them.
-### [[Scanner]()]
+### [[Scanner](./5_Scanner.md)]
 How to make your program interactive.
 ## Coming Soon
 ### [[Decision Making]()]
