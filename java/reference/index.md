@@ -17,3 +17,5 @@ If statements and comparison
 *The poor man's for loop*
 ### [[Methods]()]
 *CRASH*, your code shatters into lots of little code. The little pieces work together to become more powerful than they ever were before.
+
+Advanced topics include arrays, arraylists, objects, and enumerators.
