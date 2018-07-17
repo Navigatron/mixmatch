@@ -21,7 +21,7 @@ public class mixmatchmaze extends Application{
 
         // Settings
         Color backgroundColor = Color.BLACK;
-        double playerSpeed = 1;
+        double playerSpeed = 100; // Pixels Per Second
 
         // This is where we will store the things in the game.
         ArrayList<Rectangle> world = new ArrayList<Rectangle>();
@@ -84,7 +84,7 @@ public class mixmatchmaze extends Application{
             public Point worldToScreen(Point point){
                 return new Point(
                     WIDTH/2-(this.position.x-point.x),
-                    HEIGHT/2+(this.position.y-point.y)
+                    HEIGHT/2-(this.position.y-point.y)
                 );
             }
         }
@@ -116,29 +116,70 @@ public class mixmatchmaze extends Application{
         public void gameLoop(){
             // This will run over and over again
             new AnimationTimer(){
+                long lastFrame = System.nanoTime();
                 public void handle(long currentNanoTime){
+                    // Calculate the Time Difference
+                    double delta = ((double)currentNanoTime - (double)lastFrame)/(double)1000000000l;
+                    lastFrame = currentNanoTime;
+                    System.out.println(delta);
                     // Step One - Do Physics
-                    physics();
+                    physics(delta);
                     // Step Two - Draw.
                     draw();
                 }
             }.start();
         }
 
-        private void physics(){
+        private void physics(double delta){
             if(Keys.w){
-                player.position.y += playerSpeed;
+                player.position.y -= playerSpeed*delta;
             }
             if(Keys.a){
-                player.position.x -= playerSpeed;
+                player.position.x -= playerSpeed*delta;
             }
             if(Keys.s){
-                player.position.y -= playerSpeed;
+                player.position.y += playerSpeed*delta;
             }
             if(Keys.d){
-                player.position.x += playerSpeed;
+                player.position.x += playerSpeed*delta;
+            }
+            // collision Detection - test everything against everything
+            for (Rectangle thing : world){
+                for(Rectangle other : world){
+                    if(thing != other){
+                        /*
+                        if(player1.x < player2.x + player2.width &&
+                            player1.x + player1.width > player2.x &&
+                            player1.y < player2.y + player2.height &&
+                            player1.y + player1.height > player2.y)
+                        {
+                            System.out.println("Collision Detected");
+                        }
+                        */
+                        if(
+                            thing.position.x < other.position.x + other.size.x &&
+                            thing.position.x + thing.size.x > other.position.x &&
+                            thing.position.y < other.position.y + other.size.y &&
+                            thing.position.y + thing.size.y > other.position.y
+                        ){
+                            System.out.println("THERE IS OF BE A COLLIDE");
+                            //Point collisionVector = getCollisionVector(thing, other);
+                        }
+                    }
+                }
             }
         }
+
+        // getCollisionVector(Rectangle A, Rectangle B){
+        //     // What is the smallest collision vector?
+        //     // X or Y?
+        //     // How to find a collision vector
+        //     // take the center of each rect, find actual distance and desired distance.
+        //     float yd = B.position.y - A.position.y;
+        //     float updelta = A.size.y;
+        //     float downdelta = B.size.y;
+        //     float smallest = Math.abs(updelta-yd)
+        // }
 
         private void draw(){
             // Get the 'Graphics Context' so we can draw on it.
