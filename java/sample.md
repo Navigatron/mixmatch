@@ -1,5 +1,6 @@
-### <a name="sample"></a>Mixmatch's Sample Code
----
+#Mixmatch's Sample Code
+
+### Rectangles can Move
 
 The below project will:  
 - Create a Window.
@@ -13,3 +14,8 @@ Challenges:
 - Make the camera follow the player. Hint:  `camera.position = player.position;`, somewhere in the *physics* method.
 
 [Get the code Here.](../code/mixmatchmaze.java)
+
+### Let's Play Roulette.
+
+You start with 100 chips. bet on even, odd, or zero.
+[Get the code Here.](../code/casino.java)
