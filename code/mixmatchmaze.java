@@ -21,7 +21,10 @@ public class mixmatchmaze extends Application{
 
         // Settings
         Color backgroundColor = Color.BLACK;
-        double playerSpeed = 100; // Pixels Per Second
+        double playerSpeed = 200; // Pixels Per Second
+        double jumpForce = 5;
+        double gravity = 9.8;
+        boolean canJump = true;
 
         // This is where we will store the things in the game.
         ArrayList<Rectangle> world = new ArrayList<Rectangle>();
@@ -30,7 +33,7 @@ public class mixmatchmaze extends Application{
         Camera camera;
 
         // The Player, just a Rectangle.
-        Rectangle player;
+        PhysicsRectangle player;
 
         // What follows is Defenitions for things, like what exactly is a Camera?
 
@@ -64,6 +67,21 @@ public class mixmatchmaze extends Application{
             public Rectangle(double x, double y, double w, double h, Color color){
                 this(x, y, w, h);
                 this.color = color;
+            }
+        }
+
+        class PhysicsRectangle extends Rectangle{
+            Point velocity;
+            double mass;
+            public PhysicsRectangle(double x, double y, double w, double h, double mass){
+                super(x, y, w, h);
+                this.mass = mass;
+                this.velocity = new Point(0,0);
+            }
+            public PhysicsRectangle(double x, double y, double w, double h, Color color, double mass){
+                super(x, y, w, h, color);
+                this.mass = mass;
+                this.velocity = new Point(0,0);
             }
         }
 
@@ -104,13 +122,18 @@ public class mixmatchmaze extends Application{
 
         private void buildWorld(){
             // Create the Camera and Player
-            player = new Rectangle(0, 0, 50, 50, Color.GREEN);
+            player = new PhysicsRectangle(0, 0, 50, 50, Color.GREEN, 1);
             camera = new Camera();
             // Add the player to the world
             world.add(player);
             // Add a bunch of Blocks to the world.
-            world.add(new Rectangle(-50, -50, 100, 25));
-            world.add(new Rectangle(200, 100, 200, 25));
+            world.add(new Rectangle(-1000, 1000, 2000, 25));
+            world.add(new Rectangle(-1000, -1000, 25, 2000));
+            world.add(new Rectangle(1000, -1000, 25, 2000));
+            world.add(new Rectangle(-1000, -1000, 2000, 25));
+            for (int i=-1000; i<1000; i+=250 ) {
+                world.add(new Rectangle(i, -i, 200, 25));
+            }
         }
 
         public void gameLoop(){
@@ -121,7 +144,6 @@ public class mixmatchmaze extends Application{
                     // Calculate the Time Difference
                     double delta = ((double)currentNanoTime - (double)lastFrame)/(double)1000000000l;
                     lastFrame = currentNanoTime;
-                    System.out.println(delta);
                     // Step One - Do Physics
                     physics(delta);
                     // Step Two - Draw.
@@ -131,55 +153,76 @@ public class mixmatchmaze extends Application{
         }
 
         private void physics(double delta){
-            if(Keys.w){
-                player.position.y -= playerSpeed*delta;
+            // Player Input
+            if(Keys.w && canJump){
+                // player.position.y -= playerSpeed*delta;
+                player.velocity.y = -jumpForce;
+                canJump = false;
             }
             if(Keys.a){
                 player.position.x -= playerSpeed*delta;
             }
-            if(Keys.s){
-                player.position.y += playerSpeed*delta;
-            }
+            // if(Keys.s){
+            //     player.position.y += playerSpeed*delta;
+            // }
             if(Keys.d){
                 player.position.x += playerSpeed*delta;
             }
-            // collision Detection - test everything against everything
+
+            // Gravity
+            for(Rectangle thing : world){
+                if(thing instanceof PhysicsRectangle){
+                    ((PhysicsRectangle)thing).velocity.y += gravity*delta;
+                    ((PhysicsRectangle)thing).position.y += ((PhysicsRectangle)thing).velocity.y;
+                }
+            }
+
+            // collision Detection - test PhysicsThings against Everything
             for (Rectangle thing : world){
-                for(Rectangle other : world){
-                    if(thing != other){
-                        /*
-                        if(player1.x < player2.x + player2.width &&
-                            player1.x + player1.width > player2.x &&
-                            player1.y < player2.y + player2.height &&
-                            player1.y + player1.height > player2.y)
-                        {
-                            System.out.println("Collision Detected");
-                        }
-                        */
-                        if(
-                            thing.position.x < other.position.x + other.size.x &&
-                            thing.position.x + thing.size.x > other.position.x &&
-                            thing.position.y < other.position.y + other.size.y &&
-                            thing.position.y + thing.size.y > other.position.y
-                        ){
-                            System.out.println("THERE IS OF BE A COLLIDE");
-                            //Point collisionVector = getCollisionVector(thing, other);
+                if(thing instanceof PhysicsRectangle){
+                    for(Rectangle other : world){
+                        if(thing != other){
+                            if(
+                                thing.position.x < other.position.x + other.size.x &&
+                                thing.position.x + thing.size.x > other.position.x &&
+                                thing.position.y < other.position.y + other.size.y &&
+                                thing.position.y + thing.size.y > other.position.y
+                            ){
+                                // thing has physics, and is colliding with something else.
+                                if(other instanceof PhysicsRectangle){
+                                    // Physics collision - Complicated!
+                                    System.out.println("This is hard so I'll write it later");
+                                }else{
+                                    // Physics thing is hitting a non-moving other.
+                                    if(thing == player){
+                                        canJump = true;
+                                    }
+                                    // Remove Velocity
+                                    ((PhysicsRectangle)thing).velocity.y = 0;
+                                    // Calculate how far to move in each direction to stop collision
+                                    double dxl = (other.position.x-thing.size.x)-thing.position.x;
+                                    double dxr = (other.position.x+other.size.x)-thing.position.x;
+                                    double dyu = (other.position.y-thing.size.y)-thing.position.y;
+                                    double dyd = (other.position.y+other.size.y)-thing.position.y;
+                                    // Condense: Keep the smallest X change and Y change.
+                                    double dx = Math.abs(dxl) < Math.abs(dxr) ? dxl : dxr;
+                                    double dy = Math.abs(dyu) < Math.abs(dyd) ? dyu : dyd;
+                                    // Convert smallest X or Y into the offset vector
+                                    Point offset = Math.abs(dx) < Math.abs(dy) ? new Point(dx, 0) : new Point(0, dy);
+                                    // Move the thing out of the collision
+                                    thing.position.x += offset.x;
+                                    thing.position.y += offset.y;
+                                }
+                            }
                         }
                     }
                 }
             }
-        }
 
-        // getCollisionVector(Rectangle A, Rectangle B){
-        //     // What is the smallest collision vector?
-        //     // X or Y?
-        //     // How to find a collision vector
-        //     // take the center of each rect, find actual distance and desired distance.
-        //     float yd = B.position.y - A.position.y;
-        //     float updelta = A.size.y;
-        //     float downdelta = B.size.y;
-        //     float smallest = Math.abs(updelta-yd)
-        // }
+            // Make the Camera follow the player.
+            camera.position = player.position;
+
+        }
 
         private void draw(){
             // Get the 'Graphics Context' so we can draw on it.
