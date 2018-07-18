@@ -16,3 +16,9 @@ To join, you'll need **All Three** of the below programs.
 [Client](../code/Client.java)
 [ClientGUI](../code/ClientGUI.java)
 [ChatMessage](../code/ChatMessage.java)
+
+### PLACE
+
+I built this for a college class. It's more or less the Reddit Place Project.
+
+[All Code](../code/place.zip)
