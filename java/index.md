@@ -21,4 +21,14 @@ To join, you'll need **All Three** of the below programs.
 
 I built this for a college class. It's more or less the Reddit Place Project.
 
+1. Download the .zip, extract it.
+2. Use Command Prompt to `CD` into the directory where the code was extracted
+3. run the following command.
+
+```batch
+java client.PlaceGUI [server] [port] [username]
+```
+
+Where [server] is replaced by the server, etc.
+
 [All Code](../code/place.zip)
