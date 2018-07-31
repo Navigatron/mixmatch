@@ -8,14 +8,13 @@
 
 ### The Chat Room
 
-Java class Week 5 found a chatroom program. One of you must be running the server,
-and tell the server IP address to the others who want to join.
+This is the barebones stuff you'll need to make a network connection.
 
-To join, you'll need **All Three** of the below programs.
+You might need to disable windows firewall.
 
-[Client](../code/Client.java)
-[ClientGUI](../code/ClientGUI.java)
-[ChatMessage](../code/ChatMessage.java)
+You will have to find what your IP address is - google the ipconfig command.
+
+[[Here's the Zip File.](../code/chat.zip)]
 
 ### PLACE
 
